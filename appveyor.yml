@@ -17,4 +17,3 @@ test_script:
   - node --version
   - npm --version
   - npm test || (timeout 30 && npm test)
-  - bin/svgsus svg < test/fixtures/coin.original.svg
