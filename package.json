@@ -1,0 +1,35 @@
+{
+  "name": "svgsus",
+  "version": "0.0.1",
+  "description": "Organize, clean and transform your SVGs",
+  "main": "index.js",
+  "bin": {
+    "svgsus": "./bin/svgsus"
+  },
+  "scripts": {
+    "test": "npm run lint && ava",
+    "lint": "eslint lib bin test"
+  },
+  "keywords": [
+    "svgsus",
+    "svg"
+  ],
+  "author": "Department (https://department.se)",
+  "license": "MIT",
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "babel-eslint": "^6.1.2",
+    "eslint": "^3.3.1"
+  },
+  "dependencies": {
+    "cheerio": "^0.20.0",
+    "cssparser": "^0.2.2",
+    "docopt": "^0.6.2",
+    "onecolor": "^3.0.4",
+    "pdfjs-dist": "^1.5.389",
+    "svg-path-parser": "^1.0.1",
+    "svgo": "^0.6.6",
+    "xml2js": "^0.4.17",
+    "xmldoc": "^0.5.1"
+  }
+}

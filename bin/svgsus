@@ -1,0 +1,53 @@
+#!/usr/bin/env node
+
+const fs = require('fs')
+const {resolve} = require('path')
+const svgsus = require('..')
+const {version} = require('../package.json')
+const {docopt} = require('docopt')
+
+const usage = `
+Svgsus - Organize, clean and transform your SVGs
+
+  Usage: svgsus <format> [options] [--] [<file>...]
+
+    svgsus svg [--codeIndent=<indent>] [--compressed] [--] [<file>...]
+    svgsus (pug|jade) [--codeIndent=<indent>] [--] [<file>...]
+    svgsus cashapelayer [--codeIndent=<indent>] [--codeType=<type>] [--] [<file>...]
+    svgsus uibeziershape [--codeType=<type>] [--] [<file>...]
+    svgsus vectordrawable [--codeIndent=<indent>] [--] [<file>...]
+    svgsus -h | --help
+    svgsus --version
+
+  Options:
+    --compressed           wether the output should have whitespace stripped
+    --codeIndent=<indent>  must be whitespace [default: "  "]
+    --codeType=<type>      must be either "AppKit" or "UIKit" [default: UIKit]
+
+`
+
+const program = docopt(usage, {version: version})
+
+if (program['<format>'] in svgsus) {
+  // special case for --codeIndent since default whitespace is stripped
+  if (program['--codeIndent'][0] === '"') {
+    program['--codeIndent'] = JSON.parse(program['--codeIndent'])
+  }
+
+  const options = Object
+    .keys(program)
+    .filter(k => k.indexOf('--') == 0)
+    .reduce((opts, k) => Object.assign(opts, {[k.slice(2)]: program[k]}, {}))
+
+  if (program['<file>'].length) {
+    console.error('multi file reading is not implemented yet')
+  } else {
+    const input = fs.readFileSync('/dev/stdin', 'utf8')
+    svgsus[program['<format>']].convert(input, options)
+      .then(output => console.log(output))
+      .catch(error => console.error(error))
+  }
+} else {
+  console.error('%s is not a valid format', program['<format>'])
+  console.error(usage)
+}
