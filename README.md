@@ -1,7 +1,7 @@
 
 ![Svgsus Logo](http://www.svgs.us/images/svgsus_og@2x.png)
 
-[![NPM version](https://badge.fury.io/js/svgsus.svg)](https://npmjs.org/package/svgsus) [![Build Status](https://secure.travis-ci.org/department-stockholm/svgsus.svg)](https://travis-ci.org/department-stockholm/svgsus)
+[![NPM version](https://badge.fury.io/js/svgsus.svg)](https://npmjs.org/package/svgsus) [![Build Status](https://secure.travis-ci.org/department-stockholm/svgsus.svg)](https://travis-ci.org/department-stockholm/svgsus) [![Build Status](https://ci.appveyor.com/api/projects/status/github/department-stockholm/svgsus?branch=master&svg=true)](https://ci.appveyor.com/project/slaskis/svgsus)
 
 ## Install
 
