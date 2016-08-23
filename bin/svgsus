@@ -11,9 +11,9 @@ Svgsus - Organize, clean and transform your SVGs
 
   Usage: svgsus <format> [options] [--] [<file>...]
 
-    svgsus svg [--codeIndent=<indent>] [--compressed] [--] [<file>...]
+    svgsus svg [--codeIndent=<indent> --compressed] [--] [<file>...]
     svgsus (pug|jade) [--codeIndent=<indent>] [--] [<file>...]
-    svgsus cashapelayer [--codeIndent=<indent>] [--codeType=<type>] [--] [<file>...]
+    svgsus cashapelayer [--codeIndent=<indent> --codeType=<type>] [--] [<file>...]
     svgsus uibeziershape [--codeType=<type>] [--] [<file>...]
     svgsus vectordrawable [--codeIndent=<indent>] [--] [<file>...]
     svgsus -h | --help
