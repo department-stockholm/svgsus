@@ -1,7 +1,9 @@
 language: node_js
 node_js:
   - '6'
-  - '5'
-  - '4'
+os:
+  - linux
+  - osx
+  - windows
 before_install:
   - 'npm install -g npm@latest'
