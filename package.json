@@ -10,6 +10,8 @@
     "test": "npm run lint && ava",
     "lint": "eslint lib bin test"
   },
+  "repository": "department-stockholm/svgsus",
+  "bugs": "https://github.com/department-stockholm/svgsus/issues",
   "keywords": [
     "svgsus",
     "svg"
