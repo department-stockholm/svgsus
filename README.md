@@ -27,6 +27,9 @@ npm install --save svgsus
 There's also the option of installing Svgsus as an App if you're on macOS
 (versions for Windows and Linux are planned).
 
+The app, besides providing a GUI for this tool, also has a few more features.
+Read all about them on [our website](http://www.svgs.us) and [our medium post](https://medium.com/@DepartmentStockholm/svgsus-tips-tricks-ba2de435fee0#.o193oyj0t).
+
 [Available on Mac App Store](https://itunes.apple.com/en/app/svgsus/id1106867065?l=en&mt=12)
 
 
