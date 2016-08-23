@@ -1,6 +1,7 @@
 
 ![Svgsus Logo](http://www.svgs.us/images/svgsus_og@2x.png)
 
+[![NPM version](https://badge.fury.io/js/svgsus.svg)](https://npmjs.org/package/svgsus) [![Build Status](https://secure.travis-ci.org/department-stockholm/svgsus.svg)](https://travis-ci.org/department-stockholm/svgsus)
 
 ## Install
 
@@ -30,7 +31,7 @@ There's also the option of installing Svgsus as an App if you're on macOS
 The app, besides providing a GUI for this tool, also has a few more features.
 Read all about them on [our website](http://www.svgs.us) and [our medium post](https://medium.com/@DepartmentStockholm/svgsus-tips-tricks-ba2de435fee0#.o193oyj0t).
 
-[Available on Mac App Store](https://itunes.apple.com/en/app/svgsus/id1106867065?l=en&mt=12)
+[![Available on Mac App Store](https://devimages.apple.com.edgekey.net/app-store/marketing/guidelines/mac/images/badge-download-on-the-mac-app-store.svg)](https://itunes.apple.com/en/app/svgsus/id1106867065?l=en&mt=12)
 
 
 ## Usage
@@ -129,7 +130,7 @@ Available Options:
 
 ## Contribute
 
-Please have a look at our [contribution guidelines](CONTRIBUTION.md).
+Please have a look at our [contribution guidelines](CONTRIBUTING.md).
 
 
 
