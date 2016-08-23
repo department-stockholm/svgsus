@@ -19,7 +19,7 @@ Or if you want to use svgsus as a library in your project you also use npm but
 keep it local to your project to make it easier for your fellow developers.
 
 ```
-npm install -S svgsus
+npm install --save svgsus
 ```
 
 ### App
