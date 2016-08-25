@@ -44,19 +44,20 @@ Svgsus - Organize, clean and transform your SVGs
 
   Usage: svgsus <format> [options] [--] [<file>...]
 
-    svgsus svg [--codeIndent=<indent>] [--compressed] [--] [<file>...]
-    svgsus (pug|jade) [--codeIndent=<indent>] [--] [<file>...]
-    svgsus cashapelayer [--codeIndent=<indent>] [--codeType=<type>] [--] [<file>...]
-    svgsus uibeziershape [--codeType=<type>] [--] [<file>...]
-    svgsus vectordrawable [--codeIndent=<indent>] [--] [<file>...]
+    svgsus svg [--codeIndent=<indent> --compressed --output=<dir>] [--] [<file>...]
+    svgsus (pug|jade) [--codeIndent=<indent> --output=<dir>] [--] [<file>...]
+    svgsus cashapelayer [--codeIndent=<indent> --codeType=<type> --output=<dir>] [--] [<file>...]
+    svgsus uibeziershape [--codeType=<type> --output=<dir>] [--] [<file>...]
+    svgsus vectordrawable [--codeIndent=<indent> --output=<dir>] [--] [<file>...]
     svgsus -h | --help
     svgsus --version
 
   Options:
-    --compressed           whether the output should have its whitespace
-                           stripped [default: false]
+    --compressed           wether the output should have whitespace stripped
     --codeIndent=<indent>  must be whitespace [default: "  "]
     --codeType=<type>      must be either "AppKit" or "UIKit" [default: UIKit]
+    --output=<dir>         a directory to write converted files to, defaults to
+                           current directory if any <file>s are specified
 ```
 
 If no files are specified svgsus expects an SVG to be piped in using stdin. And
