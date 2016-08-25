@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const fs = require('fs')
-const {resolve} = require('path')
+const {resolve, basename, extname} = require('path')
 const svgsus = require('..')
 const {version} = require('../package.json')
 const {docopt} = require('docopt')
@@ -11,11 +11,11 @@ Svgsus - Organize, clean and transform your SVGs
 
   Usage: svgsus <format> [options] [--] [<file>...]
 
-    svgsus svg [--codeIndent=<indent> --compressed] [--] [<file>...]
-    svgsus (pug|jade) [--codeIndent=<indent>] [--] [<file>...]
-    svgsus cashapelayer [--codeIndent=<indent> --codeType=<type>] [--] [<file>...]
-    svgsus uibeziershape [--codeType=<type>] [--] [<file>...]
-    svgsus vectordrawable [--codeIndent=<indent>] [--] [<file>...]
+    svgsus svg [--codeIndent=<indent> --compressed --output=<dir>] [--] [<file>...]
+    svgsus (pug|jade) [--codeIndent=<indent> --output=<dir>] [--] [<file>...]
+    svgsus cashapelayer [--codeIndent=<indent> --codeType=<type> --output=<dir>] [--] [<file>...]
+    svgsus uibeziershape [--codeType=<type> --output=<dir>] [--] [<file>...]
+    svgsus vectordrawable [--codeIndent=<indent> --output=<dir>] [--] [<file>...]
     svgsus -h | --help
     svgsus --version
 
@@ -23,6 +23,8 @@ Svgsus - Organize, clean and transform your SVGs
     --compressed           wether the output should have whitespace stripped
     --codeIndent=<indent>  must be whitespace [default: "  "]
     --codeType=<type>      must be either "AppKit" or "UIKit" [default: UIKit]
+    --output=<dir>         a directory to write converted files to, defaults to
+                           current directory if any <file>s are specified
 
 `
 
@@ -41,12 +43,20 @@ if (format in svgsus) {
     options.codeIndent = JSON.parse(options.codeIndent)
   }
 
-  if (files.length > 1) {
-    process.stderr.write('multi file reading is not implemented yet\n')
-    process.exit(1)
+  if (files.length) {
+    const directory = resolve(program['<output>'] || '.')
 
+    files
+      .map(file =>
+        svgsus[format].convert(fs.readFileSync(resolve(file), 'utf8'), options)
+          .then(output => fs.writeFileSync(resolve(directory, basename(file, extname(file)) + svgsus[format].extension), output))
+          .catch(error => {
+            process.stderr.write(error.message + '\n')
+            process.exit(1)
+          })
+      )
   } else {
-    const path = resolve(files[0] || '/dev/stdin')
+    const path = resolve('/dev/stdin')
     const input = fs.readFileSync(path, 'utf8')
     svgsus[format].convert(input, options)
       .then(output => console.log(output))
