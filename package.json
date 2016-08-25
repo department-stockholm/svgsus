@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "npm run lint && ava",
-    "lint": "eslint lib bin test"
+    "lint": "eslint lib bin test",
+    "prepublish": "npm test"
   },
   "homepage": "http://www.svgs.us",
   "repository": "department-stockholm/svgsus",
