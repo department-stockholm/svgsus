@@ -44,7 +44,7 @@ if (format in svgsus) {
   }
 
   if (files.length) {
-    const directory = resolve(program['<output>'] || '.')
+    const directory = resolve(program['--output'] || '.')
 
     files
       .map(file =>
