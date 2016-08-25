@@ -60,8 +60,8 @@ Svgsus - Organize, clean and transform your SVGs
                            current directory if any <file>s are specified
 ```
 
-If no files are specified svgsus expects an SVG to be piped in using stdin. And
-if no `--output`-directory is specified svgsus will output to stdout.
+If no files are specified svgsus expects an SVG to be piped in using stdin and
+the formatted output will be piped to stdout.
 
 
 ### Library
