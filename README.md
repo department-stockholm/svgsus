@@ -134,5 +134,9 @@ Available Options:
 Please have a look at our [contribution guidelines](CONTRIBUTING.md).
 
 
+## Credits
+
+A very special thanks to the all the developers of our beloved dependencies, and to [svg2android](https://github.com/inloop/svg2android) for providing the inspiration and source of the Vector Drawable converter.
+
 
 With ❤️ by [Department](https://department.se).
