@@ -122,7 +122,7 @@ Available Options:
 
 #### `svgsus.vectordrawable(svg, options={})`
 
-Renders the SVG as a Java code suitable for Android.
+Renders the SVG as XML code suitable for Android.
 
 Available Options:
 
