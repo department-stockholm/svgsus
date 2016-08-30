@@ -6,28 +6,7 @@ const svgsus = require('..')
 const {version} = require('../package.json')
 const {docopt} = require('docopt')
 
-const usage = `
-Svgsus - Organize, clean and transform your SVGs
-
-  Usage: svgsus <format> [options] [--] [<file>...]
-
-    svgsus svg [--codeIndent=<indent> --compressed --output=<dir>] [--] [<file>...]
-    svgsus (pug|jade) [--codeIndent=<indent> --output=<dir>] [--] [<file>...]
-    svgsus cashapelayer [--codeIndent=<indent> --codeType=<type> --output=<dir>] [--] [<file>...]
-    svgsus uibeziershape [--codeType=<type> --output=<dir>] [--] [<file>...]
-    svgsus vectordrawable [--codeIndent=<indent> --output=<dir>] [--] [<file>...]
-    svgsus -h | --help
-    svgsus --version
-
-  Options:
-    --compressed           wether the output should have whitespace stripped
-    --codeIndent=<indent>  must be whitespace [default: "  "]
-    --codeType=<type>      must be either "AppKit" or "UIKit" [default: UIKit]
-    --output=<dir>         a directory to write converted files to, defaults to
-                           current directory if any <file>s are specified
-
-`
-
+const usage = fs.readFileSync(resolve(__dirname, '../usage.txt'))
 const program = docopt(usage, {version: version})
 const format = program['<format>']
 
