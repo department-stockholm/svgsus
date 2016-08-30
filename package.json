@@ -7,9 +7,9 @@
     "svgsus": "./bin/svgsus"
   },
   "scripts": {
-    "test": "npm run lint && ava",
+    "test": "ava",
     "lint": "eslint lib bin test",
-    "prepublish": "npm test"
+    "prepublish": "npm run lint && npm test"
   },
   "homepage": "http://www.svgs.us",
   "repository": "department-stockholm/svgsus",
@@ -23,7 +23,8 @@
   "devDependencies": {
     "ava": "^0.16.0",
     "babel-eslint": "^6.1.2",
-    "eslint": "^3.3.1"
+    "eslint": "^3.3.1",
+    "execa": "^0.4.0"
   },
   "dependencies": {
     "cheerio": "^0.20.0",

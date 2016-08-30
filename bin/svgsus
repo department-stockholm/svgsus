@@ -6,7 +6,7 @@ const svgsus = require('..')
 const {version} = require('../package.json')
 const {docopt} = require('docopt')
 
-const usage = fs.readFileSync(resolve(__dirname, '../usage.txt'))
+const usage = fs.readFileSync(resolve(__dirname, '../usage.txt'), 'utf8')
 const program = docopt(usage, {version: version})
 const format = program['<format>']
 
@@ -38,7 +38,7 @@ if (format in svgsus) {
     const path = resolve('/dev/stdin')
     const input = fs.readFileSync(path, 'utf8')
     svgsus[format].convert(input, options)
-      .then(output => console.log(output))
+      .then(output => process.stdout.write(output + '\n'))
       .catch(error => {
         process.stderr.write(error.message + '\n')
         process.exit(1)
