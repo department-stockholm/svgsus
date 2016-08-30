@@ -35,14 +35,19 @@ if (format in svgsus) {
           })
       )
   } else {
-    const path = resolve('/dev/stdin')
-    const input = fs.readFileSync(path, 'utf8')
-    svgsus[format].convert(input, options)
-      .then(output => process.stdout.write(output + '\n'))
-      .catch(error => {
-        process.stderr.write(error.message + '\n')
-        process.exit(1)
-      })
+    let input = ''
+    process.stdin.setEncoding('utf8')
+    process.stdin.on('readable', () => {
+      input += process.stdin.read() || ''
+    });
+    process.stdin.on('end', () => {
+      svgsus[format].convert(input, options)
+        .then(output => process.stdout.write(output + '\n'))
+        .catch(error => {
+          process.stderr.write(error.message + '\n')
+          process.exit(1)
+        })
+    });
   }
 } else {
   process.stderr.write(format + ' is not a valid format\n\n')
