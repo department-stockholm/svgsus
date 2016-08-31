@@ -1,5 +1,5 @@
 import test from 'ava';
-import {readFileSync, writeFileSync} from 'fs';
+import {readFileSync} from 'fs';
 import {resolve} from 'path';
 import {convert, convertAll} from '../lib/cashapelayer';
 
@@ -33,10 +33,10 @@ test('logo.uikit-4.swift', t => {
 
 test('all.uikit-4.swift', t => {
   const original = [{
-    filename: 'logo.original.svg',
+    name: 'logo.original.svg',
     svg: readFileSync(resolve(__dirname, 'fixtures', 'logo.original.svg'), 'utf8')
   },{
-    filename: 'coin.original.svg',
+    name: 'coin.original.svg',
     svg: readFileSync(resolve(__dirname, 'fixtures', 'coin.original.svg'), 'utf8')
   }];
   const expected = readFileSync(resolve(__dirname, 'fixtures', t.title), 'utf8');
