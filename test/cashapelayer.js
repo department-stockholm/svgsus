@@ -41,7 +41,7 @@ test('all.uikit-4.swift', t => {
   }];
   const expected = readFileSync(resolve(__dirname, 'fixtures', t.title), 'utf8');
   return convertAll(original, {codeIndent: '    ', codeType: 'UIKit'})
-    .then(actual => t.is(actual.contents, expected));
+    .then(actual => t.is(actual[0].code, expected));
 })
 
 
