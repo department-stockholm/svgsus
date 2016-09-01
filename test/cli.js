@@ -15,8 +15,12 @@ test('bin/svgsus pug fixtures/coin.original.svg', t => run(t).then(cleanup('coin
 test('bin/svgsus pug fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).then(cleanup('coin.original.pug', 'logo-defs.original.pug')))
 test('bin/svgsus pug --output fixtures -- fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).then(cleanup('fixtures/coin.original.pug', 'fixtures/logo-defs.original.pug')))
 test('bin/svgsus cashapelayer fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).then(cleanup('svgsus.swift')))
-test('bin/svgsus cashapelayer --output multi.swift fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).then(cleanup('multi.swift')))
-test('bin/svgsus cashapelayer --output single.swift < fixtures/coin.original.svg', t => run(t).then(cleanup('single.swift')))
+test('bin/svgsus cashapelayer --output ca-multi.swift fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).then(cleanup('ca-multi.swift')))
+test('bin/svgsus cashapelayer --output ca-single.swift < fixtures/coin.original.svg', t => run(t).then(cleanup('ca-single.swift')))
+test('bin/svgsus uibezierpath --output ui-single.swift < fixtures/coin.original.svg', t => run(t).then(cleanup('ui-single.swift')))
+test('bin/svgsus svg --output svg-single.svg fixtures/coin.original.svg', t => run(t).then(cleanup('svg-single.svg')))
+test('bin/svgsus svg --output svg-fail-single.svg fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).catch(io => t.regex(io.stderr, /multiple files require --output to be a directory/)))
+test('bin/svgsus svg fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).then(cleanup('coin.original.svg', 'logo-defs.original.svg')))
 
 function run(t) {
   const args = t.title.split(' ')
