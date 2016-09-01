@@ -81,7 +81,21 @@ if (format in svgsus) {
   } else {
     buffer(process.stdin)
       .then(input => formatter.convert(input, options))
-      .then(output => process.stdout.write(output + '\n'))
+      .then(output => {
+        if (program['--output']) {
+          let path = resolve(program['--output'])
+          const stat = statSync(path)
+
+          if (stat && stat.isDirectory()) {
+            path = resolve(path, 'svgsus-converted' + formatter.extension)
+            process.stderr.write('output is a directory. writing to ' + path + '\n')
+          }
+
+          fs.writeFileSync(path, output)
+        } else {
+          process.stdout.write(output + '\n')
+        }
+      })
       .catch(fail)
   }
 } else {
