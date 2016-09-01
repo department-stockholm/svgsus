@@ -11,6 +11,7 @@ const program = docopt(usage, {version: version})
 const format = program['<format>']
 
 if (format in svgsus) {
+  const formatter = svgsus[format]
   const files = program['<file>']
   const options = Object
     .keys(program)
@@ -23,34 +24,105 @@ if (format in svgsus) {
   }
 
   if (files.length) {
-    const directory = resolve(program['--output'] || '.')
+    const input = files.map(file => ({
+      name: basename(file, extname(file)),
+      svg: fs.readFileSync(resolve(file), 'utf8')
+    }))
 
-    files
-      .map(file =>
-        svgsus[format].convert(fs.readFileSync(resolve(file), 'utf8'), options)
-          .then(output => fs.writeFileSync(resolve(directory, basename(file, extname(file)) + svgsus[format].extension), output))
-          .catch(error => {
-            process.stderr.write(error.message + '\n')
-            process.exit(1)
-          })
-      )
+    formatter.convertAll(input, options)
+      .then(output => {
+        // outputs are a list of {name, code}-objects
+
+        // no file
+        if (!output.length) {
+          throw new Error('missing output')
+
+        // single file output (swift etc)
+        } if (output.length === 1) {
+          const {name, code} = output[0]
+
+          // output to stdout if tty and no --output
+          if (!program['--output'] && process.stdout.isTTY) {
+            process.stdout.write(code)
+
+          } else {
+            let path = resolve(process.cwd(), name)
+
+            if (program['--output']) {
+              path = resolve(program['--output'])
+              const stat = statSync(path)
+
+              if (stat && stat.isDirectory()) {
+                path = resolve(path, name)
+              }
+            }
+
+            fs.writeFileSync(path, code)
+          }
+
+        // multi file (svg et. al.)
+        } else {
+          let path = process.cwd();
+
+          if (program['--output']) {
+            path = resolve(program['--output'])
+            const stat = statSync(path)
+
+            // or output as a file in --output dir if it's a dir
+            if (!stat || !stat.isDirectory()) {
+              throw new Error('multiple files require --output to be a directory')
+            }
+          }
+
+          output.forEach(({name, code}) => fs.writeFileSync(resolve(path, name), code))
+        }
+      })
+      .catch(fail)
   } else {
-    let input = ''
-    process.stdin.setEncoding('utf8')
-    process.stdin.on('readable', () => {
-      input += process.stdin.read() || ''
-    });
-    process.stdin.on('end', () => {
-      svgsus[format].convert(input, options)
-        .then(output => process.stdout.write(output + '\n'))
-        .catch(error => {
-          process.stderr.write(error.message + '\n')
-          process.exit(1)
-        })
-    });
+    buffer(process.stdin)
+      .then(input => formatter.convert(input, options))
+      .then(output => {
+        if (program['--output']) {
+          let path = resolve(program['--output'])
+          const stat = statSync(path)
+
+          if (stat && stat.isDirectory()) {
+            path = resolve(path, 'svgsus-converted' + formatter.extension)
+            process.stderr.write('output is a directory. writing to ' + path + '\n')
+          }
+
+          fs.writeFileSync(path, output)
+        } else {
+          process.stdout.write(output + '\n')
+        }
+      })
+      .catch(fail)
   }
 } else {
   process.stderr.write(format + ' is not a valid format\n\n')
   process.stderr.write(usage)
   process.exit(1)
+}
+
+function statSync(path) {
+  try {
+    return fs.statSync(path)
+  } catch(err) {
+    return null
+  }
+}
+
+function fail(error) {
+  process.stderr.write(error.message + '\n')
+  process.exit(1)
+}
+
+function buffer(stream) {
+  return new Promise((resolve, reject) => {
+    let data = ''
+    stream.setEncoding('utf8')
+    stream.on('error', reject)
+    stream.on('readable', () => data += stream.read() || '');
+    stream.on('end', () => resolve(data));
+  })
 }
