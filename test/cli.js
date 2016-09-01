@@ -21,6 +21,7 @@ test('bin/svgsus uibezierpath --output ui-single.swift < fixtures/coin.original.
 test('bin/svgsus svg --output svg-single.svg fixtures/coin.original.svg', t => run(t).then(cleanup('svg-single.svg')))
 test('bin/svgsus svg --output svg-fail-single.svg fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).catch(io => t.regex(io.stderr, /multiple files require --output to be a directory/)))
 test('bin/svgsus svg fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).then(cleanup('coin.original.svg', 'logo-defs.original.svg')))
+test('bin/svgsus css --output css-single.css fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).then(cleanup('css-single.css')))
 
 function run(t) {
   const args = t.title.split(' ')
