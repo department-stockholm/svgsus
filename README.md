@@ -94,6 +94,14 @@ Options:
 - `codeIndent` - a string of whitespace to be used for indentation
 - `compressed` - whether the output should have its whitespace stripped
 
+#### `svgsus.css.convert(svg, options={})`
+
+Generates CSS class with a background using the SVG as a data-uri.
+
+Options:
+
+- `codeIndent` - a string of whitespace to be used for indentation
+
 #### `svgsus.pug.convert(svg, options={})` or `svgsus.jade(svg, options={})`
 
 Renders the SVG as Pug (formerly known as Jade).
