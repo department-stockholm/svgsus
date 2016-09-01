@@ -85,7 +85,7 @@ svgsus.svg(svg, options).then(cleanedSvg => fs.writeFileSync('example-cleaned.sv
 
 ### API
 
-#### `svgsus.svg(svg, options={})`
+#### `svgsus.svg.convert(svg, options={})`
 
 Optimizes an SVG using [svgo](https://github.com/svg/svgo).
 
@@ -94,7 +94,7 @@ Options:
 - `codeIndent` - a string of whitespace to be used for indentation
 - `compressed` - whether the output should have its whitespace stripped
 
-#### `svgsus.pug(svg, options={})` or `svgsus.jade(svg, options={})`
+#### `svgsus.pug.convert(svg, options={})` or `svgsus.jade(svg, options={})`
 
 Renders the SVG as Pug (formerly known as Jade).
 
@@ -102,7 +102,7 @@ Available Options:
 
 - `codeIndent` - a string of whitespace to be used for indentation
 
-#### `svgsus.cashapelayer(svg, options={})`
+#### `svgsus.cashapelayer.convert(svg, options={})`
 
 Renders the SVG as Swift code suitable for iOS (UIKit) or macOS (AppKit).
 
@@ -111,7 +111,7 @@ Available Options:
 - `codeIndent` - a string of whitespace to be used for indentation
 - `codeType` - must be either "AppKit" or "UIKit"
 
-#### `svgsus.uibeziershape(svg, options={})`
+#### `svgsus.uibeziershape.convert(svg, options={})`
 
 Renders the SVG as a single merged UIBezierShape in Swift code suitable
 for iOS (UIKit) or macOS (AppKit).
@@ -120,13 +120,44 @@ Available Options:
 
 - `codeType` - must be either "AppKit" or "UIKit"
 
-#### `svgsus.vectordrawable(svg, options={})`
+#### `svgsus.vectordrawable.convert(svg, options={})`
 
 Renders the SVG as XML code suitable for Android.
 
 Available Options:
 
 - `codeIndent` - a string of whitespace to be used for indentation
+
+
+#### `svgsus.<format>.convertAll(inputs, options={})`
+
+Every format also provides a `convertAll()`-function which accepts multiple
+inputs.
+
+The `inputs`-argument should be an array of `{name, svg}`-objects and the
+output will be an array of `{name, code}`-objects, for example:
+
+```
+const inputs = [
+  {name: 'trashcan', svg: fs.readFileSync('trashcan.svg', 'utf8')},
+  {name: 'star', svg: fs.readFileSync('star.svg', 'utf8')}
+]
+svgsus.svg.convertAll(inputs)
+  .then(outputs =>
+    outputs.forEach(({name, code}) =>
+      fs.writeFileSync(name, code)
+    )
+  )
+```
+
+The number of files in the `outputs`-array depends on the format.
+
+Currently the _swift_-based formats, `cashapelayer` and `uibezierpath`,
+generate a single .swift file with each input svg as separate variables.
+
+And the other formats output one output file per input file.
+
+The options are the same as the `convert()`-equivalent.
 
 
 ## Contribute
