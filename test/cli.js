@@ -14,6 +14,7 @@ test('bin/svgsus missing < fixtures/coin.original.svg', t => run(t).catch(io => 
 test('bin/svgsus pug fixtures/coin.original.svg', t => run(t).then(cleanup('coin.original.pug')))
 test('bin/svgsus pug fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).then(cleanup('coin.original.pug', 'logo-defs.original.pug')))
 test('bin/svgsus pug --output fixtures -- fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).then(cleanup('fixtures/coin.original.pug', 'fixtures/logo-defs.original.pug')))
+test('bin/svgsus cashapelayer fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t))
 
 function run(t) {
   const args = t.title.split(' ')
