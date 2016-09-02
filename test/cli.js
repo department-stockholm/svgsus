@@ -15,7 +15,6 @@ test('bin/svgsus missing < fixtures/coin.original.svg', t => run(t).catch(io => 
 test('bin/svgsus pug fixtures/coin.original.svg', t => run(t).then(cleanup('coin.original.pug')))
 test('bin/svgsus pug fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).then(cleanup('coin.original.pug', 'logo-defs.original.pug')))
 test('bin/svgsus pug --output fixtures -- fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).then(cleanup('fixtures/coin.original.pug', 'fixtures/logo-defs.original.pug')))
-test('bin/svgsus cashapelayer fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).then(cleanup('coinOriginal+1.swift')))
 test('bin/svgsus cashapelayer --output ca-multi.swift fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).then(cleanup('ca-multi.swift')))
 test('bin/svgsus cashapelayer --output ca-single.swift < fixtures/coin.original.svg', t => run(t).then(cleanup('ca-single.swift')))
 test('bin/svgsus uibezierpath --output ui-single.swift < fixtures/coin.original.svg', t => run(t).then(cleanup('ui-single.swift')))
@@ -40,7 +39,7 @@ Object.keys(svgsus).forEach(format => {
 
   if (['cashapelayer', 'css', 'uibezierpath'].indexOf(format) == -1) {
     // formats that handle multi by writing multiple files
-    test(`bin/svgsus ${format} fixtures/coin.original.svg fixtures/logo-defs.original.svg`, t =>
+    test.serial(`bin/svgsus ${format} fixtures/coin.original.svg fixtures/logo-defs.original.svg`, t =>
       run(t).then(cleanup(`coin.original${ext}`, `logo-defs.original${ext}`))
     )
     test(`bin/svgsus ${format} --output a-file${ext} fixtures/coin.original.svg fixtures/logo-defs.original.svg`, t =>
@@ -52,7 +51,7 @@ Object.keys(svgsus).forEach(format => {
       run(t).then(cleanup(`${format}-multi${ext}`))
     )
 
-    test(`bin/svgsus ${format} fixtures/coin.original.svg fixtures/logo-defs.original.svg`, t =>
+    test.serial(`bin/svgsus ${format} fixtures/coin.original.svg fixtures/logo-defs.original.svg`, t =>
       run(t).then(cleanup(format == 'css' ? `coin-original+1${ext}` : `coinOriginal+1${ext}`))
     )
   }
