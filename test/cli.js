@@ -15,7 +15,7 @@ test('bin/svgsus missing < fixtures/coin.original.svg', t => run(t).catch(io => 
 test('bin/svgsus pug fixtures/coin.original.svg', t => run(t).then(cleanup('coin.original.pug')))
 test('bin/svgsus pug fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).then(cleanup('coin.original.pug', 'logo-defs.original.pug')))
 test('bin/svgsus pug --output fixtures -- fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).then(cleanup('fixtures/coin.original.pug', 'fixtures/logo-defs.original.pug')))
-test('bin/svgsus cashapelayer fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).then(cleanup('svgsus.swift')))
+test('bin/svgsus cashapelayer fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).then(cleanup('coinOriginal+1.swift')))
 test('bin/svgsus cashapelayer --output ca-multi.swift fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).then(cleanup('ca-multi.swift')))
 test('bin/svgsus cashapelayer --output ca-single.swift < fixtures/coin.original.svg', t => run(t).then(cleanup('ca-single.swift')))
 test('bin/svgsus uibezierpath --output ui-single.swift < fixtures/coin.original.svg', t => run(t).then(cleanup('ui-single.swift')))
@@ -53,7 +53,7 @@ Object.keys(svgsus).forEach(format => {
     )
 
     test(`bin/svgsus ${format} fixtures/coin.original.svg fixtures/logo-defs.original.svg`, t =>
-      run(t).then(cleanup(`svgsus${ext}`))
+      run(t).then(cleanup(format == 'css' ? `coin-original+1${ext}` : `coinOriginal+1${ext}`))
     )
   }
 })
