@@ -2,6 +2,7 @@ import test from 'ava';
 import execa from 'execa';
 import {resolve} from 'path';
 import {readFileSync, unlinkSync} from 'fs';
+import svgsus from '..'
 
 test('bin/svgsus', t => run(t).catch(io => t.regex(io.stdout, /Usage: /)))
 test('bin/svgsus cashapelayer < fixtures/coin.original.svg', t => run(t))
@@ -22,6 +23,40 @@ test('bin/svgsus svg --output svg-single.svg fixtures/coin.original.svg', t => r
 test('bin/svgsus svg --output svg-fail-single.svg fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).catch(io => t.regex(io.stderr, /multiple files require --output to be a directory/)))
 test('bin/svgsus svg fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).then(cleanup('coin.original.svg', 'logo-defs.original.svg')))
 test('bin/svgsus css --output css-single.css fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).then(cleanup('css-single.css')))
+
+
+Object.keys(svgsus).forEach(format => {
+  const ext = svgsus[format].extension
+
+  // all formats should be able to take stdin and write to an output file
+  test(`bin/svgsus ${format} --output ${format}-stdin${ext} < fixtures/coin.original.svg`, t =>
+    run(t).then(cleanup(`${format}-stdin${ext}`))
+  )
+
+  // all formats should be able to take a single file and write to an output file
+  test(`bin/svgsus ${format} --output ${format}-single${ext} fixtures/coin.original.svg`, t =>
+    run(t).then(cleanup(`${format}-single${ext}`))
+  )
+
+  if (['cashapelayer', 'css', 'uibezierpath'].indexOf(format) == -1) {
+    // formats that handle multi by writing multiple files
+    test(`bin/svgsus ${format} fixtures/coin.original.svg fixtures/logo-defs.original.svg`, t =>
+      run(t).then(cleanup(`coin.original${ext}`, `logo-defs.original${ext}`))
+    )
+    test(`bin/svgsus ${format} --output a-file${ext} fixtures/coin.original.svg fixtures/logo-defs.original.svg`, t =>
+      run(t).catch(io => t.regex(io.stderr, /multiple files require --output to be a directory/))
+    )
+  } else {
+    // formats that handle multi by writing to single file
+    test(`bin/svgsus ${format} --output ${format}-multi${ext} fixtures/coin.original.svg fixtures/logo-defs.original.svg`, t =>
+      run(t).then(cleanup(`${format}-multi${ext}`))
+    )
+
+    test(`bin/svgsus ${format} fixtures/coin.original.svg fixtures/logo-defs.original.svg`, t =>
+      run(t).then(cleanup(`svgsus${ext}`))
+    )
+  }
+})
 
 function run(t) {
   const args = t.title.split(' ')
