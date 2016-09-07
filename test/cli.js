@@ -21,7 +21,6 @@ test('bin/svgsus uibezierpath --output ui-single.swift < fixtures/coin.original.
 test('bin/svgsus svg --output svg-single.svg fixtures/coin.original.svg', t => run(t).then(cleanup('svg-single.svg')))
 test('bin/svgsus svg --output svg-fail-single.svg fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).catch(io => t.regex(io.stderr, /multiple files require --output to be a directory/)))
 test('bin/svgsus svg fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).then(cleanup('coin.original.svg', 'logo-defs.original.svg')))
-test('bin/svgsus css --output css-single.css fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).then(cleanup('css-single.css')))
 
 
 Object.keys(svgsus).forEach(format => {
@@ -42,6 +41,7 @@ Object.keys(svgsus).forEach(format => {
     test.serial(`bin/svgsus ${format} fixtures/coin.original.svg fixtures/logo-defs.original.svg`, t =>
       run(t).then(cleanup(`coin.original${ext}`, `logo-defs.original${ext}`))
     )
+
     test(`bin/svgsus ${format} --output a-file${ext} fixtures/coin.original.svg fixtures/logo-defs.original.svg`, t =>
       run(t).catch(io => t.regex(io.stderr, /multiple files require --output to be a directory/))
     )
