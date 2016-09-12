@@ -36,7 +36,7 @@ Object.keys(svgsus).forEach(format => {
     run(t).then(cleanup(`${format}-single${ext}`))
   )
 
-  if (['cashapelayer', 'css', 'uibezierpath'].indexOf(format) == -1) {
+  if (['cashapelayer', 'css', 'uibezierpath', 'svgsymbol'].indexOf(format) == -1) {
     // formats that handle multi by writing multiple files
     test.serial(`bin/svgsus ${format} fixtures/coin.original.svg fixtures/logo-defs.original.svg`, t =>
       run(t).then(cleanup(`coin.original${ext}`, `logo-defs.original${ext}`))
@@ -52,7 +52,7 @@ Object.keys(svgsus).forEach(format => {
     )
 
     test.serial(`bin/svgsus ${format} fixtures/coin.original.svg fixtures/logo-defs.original.svg`, t =>
-      run(t).then(cleanup(format == 'css' ? `coin-original+1${ext}` : `coinOriginal+1${ext}`))
+      run(t).then(cleanup(format == 'css' || format == 'svgsymbol' ? `coin-original+1${ext}` : `coinOriginal+1${ext}`))
     )
   }
 })
