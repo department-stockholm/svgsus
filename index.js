@@ -5,3 +5,4 @@ exports.css = require('./lib/css-background');
 exports.vectordrawable = require('./lib/vector-drawable');
 exports.svg = require('./lib/cleaned-svg');
 exports.uibezierpath = require('./lib/uibezierpath');
+exports.svgsymbol = require('./lib/svg-symbol');
