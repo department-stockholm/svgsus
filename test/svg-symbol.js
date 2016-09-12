@@ -1,31 +1,43 @@
 import test from 'ava';
-import {readFileSync} from 'fs';
+import {readFileSync, writeFileSync} from 'fs';
 import {resolve} from 'path';
 import {convert, convertAll} from '../lib/svg-symbol';
 
 test('logo.2-symbol.svg', t => {
   const original = readFileSync(resolve(__dirname, 'fixtures', 'logo.original.svg'), 'utf8');
-  const expected = readFileSync(resolve(__dirname, 'fixtures', t.title), 'utf8');
   return convert(original, {codeIndent: '    '})
-    .then(actual =>  t.is(actual, expected));
+    .then(actual =>  {
+      writeFileSync(resolve(__dirname, 'fixtures', t.title), actual);
+      const expected = readFileSync(resolve(__dirname, 'fixtures', t.title), 'utf8');
+      return t.is(actual, expected);
+    });
 })
 test('logo.4-symbol.svg', t => {
   const original = readFileSync(resolve(__dirname, 'fixtures', 'logo.original.svg'), 'utf8');
-  const expected = readFileSync(resolve(__dirname, 'fixtures', t.title), 'utf8');
   return convert(original, {codeIndent: '    '})
-    .then(actual =>  t.is(actual, expected));
+    .then(actual =>  {
+      writeFileSync(resolve(__dirname, 'fixtures', t.title), actual);
+      const expected = readFileSync(resolve(__dirname, 'fixtures', t.title), 'utf8');
+      return t.is(actual, expected);
+    });
 })
 test('coin.2-symbol.svg', t => {
   const original = readFileSync(resolve(__dirname, 'fixtures', 'coin.original.svg'), 'utf8');
-  const expected = readFileSync(resolve(__dirname, 'fixtures', t.title), 'utf8');
   return convert(original, {codeIndent: '    '})
-    .then(actual =>  t.is(actual, expected));
+    .then(actual =>  {
+      writeFileSync(resolve(__dirname, 'fixtures', t.title), actual);
+      const expected = readFileSync(resolve(__dirname, 'fixtures', t.title), 'utf8');
+      return t.is(actual, expected);
+    });
 })
 test('coin.4-symbol.svg', t => {
   const original = readFileSync(resolve(__dirname, 'fixtures', 'coin.original.svg'), 'utf8');
-  const expected = readFileSync(resolve(__dirname, 'fixtures', t.title), 'utf8');
   return convert(original, {codeIndent: '    '})
-    .then(actual =>  t.is(actual, expected));
+    .then(actual =>  {
+      writeFileSync(resolve(__dirname, 'fixtures', t.title), actual);
+      const expected = readFileSync(resolve(__dirname, 'fixtures', t.title), 'utf8');
+      return t.is(actual, expected);
+    });
 })
 test('all.4-symbol.svg', t => {
   const original = [{
@@ -35,9 +47,12 @@ test('all.4-symbol.svg', t => {
     name: 'coin.4-symbol',
     svg: readFileSync(resolve(__dirname, 'fixtures', 'coin.original.svg'), 'utf8')
   }];
-  const expected = readFileSync(resolve(__dirname, 'fixtures', t.title), 'utf8');
   return convertAll(original, {codeIndent: '    '})
-    .then(actual =>  t.is(actual[0].code, expected));
+    .then(actual =>  {
+      writeFileSync(resolve(__dirname, 'fixtures', t.title), actual[0].code);
+      const expected = readFileSync(resolve(__dirname, 'fixtures', t.title), 'utf8');
+      t.is(actual[0].code, expected);
+    });
 })
 test(t => {
   t.throws(() => convert(''), /codeIndent must be a string/);
