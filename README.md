@@ -95,6 +95,18 @@ Options:
 - `codeIndent` - a string of whitespace to be used for indentation
 - `compressed` - whether the output should have its whitespace stripped
 
+#### `svgsus.svgsymbol.convert(svg, options={})`
+
+Generates a SVG symbol in a "Spritesheet". It can then easily be used in HTML
+documents using svg `<use />`-tags.
+
+Options:
+
+- `name` - the id of the symbol in the sheet
+- `stripStyle` - whether to remove any style tags from the SVG so it's stylable using CSS.
+- `codeIndent` - a string of whitespace to be used for indentation
+- `compressed` - whether the output should have its whitespace stripped
+
 #### `svgsus.css.convert(svg, options={})`
 
 Generates CSS class with a background using the SVG as a data-uri.
