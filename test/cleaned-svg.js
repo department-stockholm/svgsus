@@ -1,7 +1,7 @@
 import test from 'ava';
 import {readFileSync} from 'fs';
 import {resolve} from 'path';
-import {convert, convertAll} from '../lib//cleaned-svg';
+import {convert, convertAll} from '../lib/cleaned-svg';
 
 test('logo.cleaned-compressed.svg', t => {
   const original = readFileSync(resolve(__dirname, 'fixtures', 'logo.original.svg'), 'utf8');
