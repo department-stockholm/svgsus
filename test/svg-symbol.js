@@ -27,6 +27,18 @@ test('coin.4-symbol.svg', t => {
   return convert(original, {codeIndent: '    '})
     .then(actual =>   t.is(actual, expected));
 })
+test('bulbasaur.2-symbol-unstripped.svg', t => {
+  const original = readFileSync(resolve(__dirname, 'fixtures', 'bulbasaur.original.svg'), 'utf8');
+  const expected = readFileSync(resolve(__dirname, 'fixtures', t.title), 'utf8');
+  return convert(original, {codeIndent: '  ', compressed: false, stripStyle: false})
+    .then(actual =>   t.is(actual, expected));
+})
+test('bulbasaur.2-symbol.svg', t => {
+  const original = readFileSync(resolve(__dirname, 'fixtures', 'bulbasaur.original.svg'), 'utf8');
+  const expected = readFileSync(resolve(__dirname, 'fixtures', t.title), 'utf8');
+  return convert(original, {codeIndent: '  '})
+    .then(actual =>   t.is(actual, expected));
+})
 test('all.4-symbol.svg', t => {
   const original = [{
     name: 'logo.4-symbol',

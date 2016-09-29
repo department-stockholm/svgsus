@@ -24,18 +24,23 @@ function optimizeSvg(svg, {noArcs, removeTitle, removeHiddenElems, custom} = {})
   return new Promise(function(resolve, reject) {
     try {
       svgo.optimize(svg, function(result) {
+<<<<<<< 69a5ea6215643ca99cb7e4187968f5bf39796273
         if (result && result.error) {
-          reject(new Error(result.error))
+          reject(new Error(result.error));
         } else if (result && result.data) {
-          resolve(result.data)
+          resolve(result.data);
         } else {
-          reject(new Error('svg optimizer failed'))
+          reject(new Error('svg optimizer failed'));
         }
-      })
+=======
+        if(result && result.data) resolve(result.data)
+        else reject(new Error('svg optimizer failed'))
+>>>>>>> created svgo plugins to handle some of the promise related filter functionality
+      });
     } catch(err) {
       reject(err)
     }
   });
 }
 
-module.exports = optimizeSvg
+module.exports = optimizeSvg;
