@@ -23,6 +23,7 @@ test('logo.cleaned-4-uncompressed.svg', t => {
   return convert(original, {codeIndent: '    ', compressed: false})
     .then(actual => t.is(actual, expected));
 })
+
 test('coin.cleaned-4-uncompressed.svg', t => {
   const original = readFileSync(resolve(__dirname, 'fixtures', 'coin.original.svg'), 'utf8');
   const expected = readFileSync(resolve(__dirname, 'fixtures', t.title), 'utf8');

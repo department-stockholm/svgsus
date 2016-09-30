@@ -31,6 +31,13 @@ test('logo.uikit-4.swift', t => {
     .then(actual => t.is(actual, expected));
 })
 
+test('river.uikit-4.swift', t => {
+  const original = readFileSync(resolve(__dirname, 'fixtures', 'river.original.svg'), 'utf8');
+  const expected = readFileSync(resolve(__dirname, 'fixtures', t.title), 'utf8');
+  return convert(original, {codeIndent: '    ', codeType: 'UIKit'})
+    .then(actual => t.is(actual, expected));
+})
+
 test('all.uikit-4.swift', t => {
   const original = [{
     name: 'logo.original.svg',

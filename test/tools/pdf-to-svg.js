@@ -1,8 +1,8 @@
 import test from 'ava';
 import {readFileSync} from 'fs';
 import {resolve} from 'path';
-import pdfToSvg from '../../lib//tools/pdf-to-svg';
-import optimizeSvg from '../../lib//tools/optimize-svg';
+import pdfToSvg from '../../lib/tools/pdf-to-svg';
+import optimizeSvg from '../../lib/tools/optimize-svg';
 
 test('oval-preview-export', t => {
   const original = readFileSync(resolve(__dirname, '../fixtures', t.title + '.pdf'));

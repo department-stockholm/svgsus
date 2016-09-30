@@ -1,7 +1,7 @@
 import test from 'ava';
 import {readFileSync} from 'fs';
 import {resolve} from 'path';
-import inlineStyle from '../../lib//tools/inline-style';
+import inlineStyle from '../../lib/tools/inline-style';
 
 test('river.inline-style.svg', t => {
   const expected = readFileSync(resolve(__dirname, '../fixtures', t.title), 'utf8');

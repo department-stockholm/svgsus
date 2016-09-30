@@ -1,5 +1,5 @@
 import test from 'ava';
-import svgColor from '../../lib//tools/svg-color';
+import svgColor from '../../lib/tools/svg-color';
 
 test('svg-color-none', t => {
   t.is(svgColor('none').alpha(), 0)
