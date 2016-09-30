@@ -27,13 +27,13 @@
   },
   "dependencies": {
     "css-select": "1.2.0",
-    "cssparser": "^0.2.2",
-    "docopt": "^0.6.2",
-    "onecolor": "^3.0.4",
-    "pdfjs-dist": "^1.5.389",
-    "svg-path-parser": "^1.0.1",
-    "svgo": "^0.6.6",
-    "xml2js": "^0.4.17",
-    "xmldoc": "^0.5.1"
+    "cssparser": "0.2.2",
+    "docopt": "0.6.2",
+    "onecolor": "3.0.4",
+    "pdfjs-dist": "1.5.500",
+    "svg-path-parser": "1.0.1",
+    "svgo": "0.7.1",
+    "xml2js": "0.4.17",
+    "xmldoc": "0.5.1"
   }
 }
