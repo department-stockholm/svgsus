@@ -89,4 +89,4 @@ let translateTransform = CATransform3DMakeTranslation(0, 400, 0)
 let transform = CATransform3DConcat(scaleTransform, translateTransform)
 rootLayer.transform = transform
 rootLayer.bounds = CGRect(x: 0, y: 0, width: 400, height: 400)
-rootLayer.anchorPoint = CGPoint(x: 0, y: 0)
+rootLayer.anchorPoint = NSPoint(x: 0, y: 0)
