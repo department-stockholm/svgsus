@@ -18,10 +18,14 @@
     "svgsus",
     "svg"
   ],
+  "standard": {
+    "parser": "babel-eslint"
+  },
   "author": "Department (https://department.se)",
   "license": "MIT",
   "devDependencies": {
     "ava": "^0.16.0",
+    "babel-eslint": "^7.0.0",
     "execa": "^0.4.0",
     "standard": "^8.3.0"
   },

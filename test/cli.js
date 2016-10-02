@@ -1,7 +1,7 @@
-import test from 'ava';
-import execa from 'execa';
-import {resolve} from 'path';
-import {readFileSync, unlinkSync} from 'fs';
+import test from 'ava'
+import execa from 'execa'
+import {resolve} from 'path'
+import {readFileSync, unlinkSync} from 'fs'
 import svgsus from '..'
 
 test('bin/svgsus', t => run(t).catch(io => t.regex(io.stdout, /Usage: /)))
@@ -24,7 +24,6 @@ test('bin/svgsus svg --output svg-single.svg fixtures/coin.original.svg', t => r
 test('bin/svgsus svg --output svg-fail-single.svg fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).catch(io => t.regex(io.stderr, /multiple files require --output to be a directory/)))
 test('bin/svgsus svg fixtures/coin.original.svg fixtures/logo-defs.original.svg', t => run(t).then(cleanup('coin.original.svg', 'logo-defs.original.svg')))
 
-
 Object.keys(svgsus).forEach(format => {
   const ext = svgsus[format].extension
 
@@ -38,7 +37,7 @@ Object.keys(svgsus).forEach(format => {
     run(t).then(cleanup(`${format}-single${ext}`))
   )
 
-  if (['cashapelayer', 'css', 'uibezierpath', 'svgsymbol'].indexOf(format) == -1) {
+  if (['cashapelayer', 'css', 'uibezierpath', 'svgsymbol'].indexOf(format) === -1) {
     // formats that handle multi by writing multiple files
     test.serial(`bin/svgsus ${format} fixtures/coin.original.svg fixtures/logo-defs.original.svg`, t =>
       run(t).then(cleanup(`coin.original${ext}`, `logo-defs.original${ext}`))
@@ -54,17 +53,17 @@ Object.keys(svgsus).forEach(format => {
     )
 
     test.serial(`bin/svgsus ${format} fixtures/coin.original.svg fixtures/logo-defs.original.svg`, t =>
-      run(t).then(cleanup(format == 'css' || format == 'svgsymbol' ? `coin-original+1${ext}` : `coinOriginal+1${ext}`))
+      run(t).then(cleanup(format === 'css' || format === 'svgsymbol' ? `coin-original+1${ext}` : `coinOriginal+1${ext}`))
     )
   }
 })
 
-function run(t) {
+function run (t) {
   const args = t.title.split(' ')
   const cmd = resolve(__dirname, '..', args.shift())
   const opts = {}
 
-  if (args.indexOf('<') != -1) {
+  if (args.indexOf('<') !== -1) {
     const file = args.pop()
     opts.input = readFileSync(resolve(__dirname, file), 'utf8')
     args.pop()
@@ -73,7 +72,7 @@ function run(t) {
   return execa(cmd, args, opts)
 }
 
-function cleanup() {
+function cleanup () {
   const paths = [].slice.call(arguments).map(path => resolve(__dirname, path))
   return () => new Promise(resolve => {
     paths.forEach(path => unlinkSync(path))
