@@ -11,7 +11,13 @@ const autoIndent = require('./tools/auto-indent')
 const {swiftFormatter} = require('./tools/swift-formatter')
 const extension = '.swift'
 
+<<<<<<< bc775fd9cd154978ee1a5ca55ec111e82901f472
+function convert (inputXml, options = {}) {
+  const codeType = options.codeType
+
+=======
 function convert(inputXml, {version, codeType} = {}) {
+>>>>>>> added swift 3 formatter
   assert(['AppKit', 'UIKit'].indexOf(codeType) !== -1, 'codeType must be either "AppKit" or "UIKit"')
 
   const formatter = swiftFormatter({version, framework: codeType})
@@ -67,17 +73,10 @@ function convertAll (contents, options = {}) {
   function joinContents (items) {
     let results = ''
     items.forEach(item => {
-<<<<<<< df848fbe14dfb49efb1ba736db0f0183b6b2ed93
       results += `var ${varName(item.name)}: UIBezierPath = {\n` +
         `${item.converted}\n` +
         `return path\n` +
         '}()\n\n'
-=======
-      results += `var ${varName(item.name)}: UIBezierPath = {\n
-        ${item.converted}\n
-        return path\n
-      }()\n\n`
->>>>>>> tweaks related to merge
     })
     return results
   }
