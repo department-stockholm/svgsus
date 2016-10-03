@@ -1,7 +1,7 @@
 import test from 'ava'
 import {readFileSync} from 'fs'
 import {resolve} from 'path'
-import {convert, convertAll} from '../lib//uibezierpath'
+import {convert, convertAll} from '../lib/uibezierpath'
 
 test('logo.appkit-bezier.swift', t => {
   const original = readFileSync(resolve(__dirname, 'fixtures', 'logo.original.svg'), 'utf8')

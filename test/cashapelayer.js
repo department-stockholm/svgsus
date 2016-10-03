@@ -1,5 +1,5 @@
 import test from 'ava'
-import {readFileSync, writeFileSync} from 'fs'
+import {readFileSync} from 'fs'
 import {resolve} from 'path'
 import {convert, convertAll} from '../lib/cashapelayer'
 
