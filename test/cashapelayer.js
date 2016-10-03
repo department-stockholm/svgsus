@@ -1,5 +1,5 @@
 import test from 'ava'
-import {readFileSync} from 'fs'
+import {readFileSync, writeFileSync} from 'fs'
 import {resolve} from 'path'
 import {convert, convertAll} from '../lib/cashapelayer'
 
@@ -35,6 +35,32 @@ test('river.uikit-4.swift', t => {
   const original = readFileSync(resolve(__dirname, 'fixtures', 'river.original.svg'), 'utf8')
   const expected = readFileSync(resolve(__dirname, 'fixtures', t.title), 'utf8')
   return convert(original, {codeIndent: '    ', codeType: 'UIKit'})
+    .then(actual => t.is(actual, expected))
+})
+
+test('logo.appkit-2-v3.swift', t => {
+  const original = readFileSync(resolve(__dirname, 'fixtures', 'logo.original.svg'), 'utf8')
+  const expected = readFileSync(resolve(__dirname, 'fixtures', t.title), 'utf8')
+  return convert(original, {codeIndent: '  ', codeType: 'AppKit', version: 3})
+    .then(actual => t.is(actual, expected))
+})
+test('logo.uikit-2-v3.swift', t => {
+  const original = readFileSync(resolve(__dirname, 'fixtures', 'logo.original.svg'), 'utf8')
+  const expected = readFileSync(resolve(__dirname, 'fixtures', t.title), 'utf8')
+  return convert(original, {codeIndent: '  ', codeType: 'UIKit', version: 3})
+    .then(actual => t.is(actual, expected))
+})
+
+test('river.appkit-2-v3.swift', t => {
+  const original = readFileSync(resolve(__dirname, 'fixtures', 'river.original.svg'), 'utf8')
+  const expected = readFileSync(resolve(__dirname, 'fixtures', t.title), 'utf8')
+  return convert(original, {codeIndent: '  ', codeType: 'AppKit', version: 3})
+    .then(actual => t.is(actual, expected))
+})
+test('river.uikit-2-v3.swift', t => {
+  const original = readFileSync(resolve(__dirname, 'fixtures', 'river.original.svg'), 'utf8')
+  const expected = readFileSync(resolve(__dirname, 'fixtures', t.title), 'utf8')
+  return convert(original, {codeIndent: '  ', codeType: 'UIKit', version: 3})
     .then(actual => t.is(actual, expected))
 })
 
