@@ -6,10 +6,12 @@
   "bin": {
     "svgsus": "./bin/svgsus"
   },
+  "browser": "browser.js",
   "scripts": {
     "test": "ava",
     "lint": "standard",
-    "prepublish": "npm run lint && npm test"
+    "build": "browserify -t [ babelify --presets [ es2015 react ] ] index.js > browser.js",
+    "prepublish": "npm run lint && npm test && npm run build"
   },
   "homepage": "http://www.svgs.us",
   "repository": "department-stockholm/svgsus",
@@ -26,6 +28,10 @@
   "devDependencies": {
     "ava": "^0.16.0",
     "babel-eslint": "^7.0.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.1",
     "execa": "^0.4.0",
     "standard": "^8.3.0"
   },
