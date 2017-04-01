@@ -6,11 +6,11 @@
   "bin": {
     "svgsus": "./bin/svgsus"
   },
-  "browser": "browser.js",
+  "unpkg": "browser.js",
   "scripts": {
     "test": "ava",
     "lint": "standard",
-    "build": "browserify -t [ babelify --presets [ es2015 react ] ] index.js > browser.js",
+    "build": "browserify index.js -o browser.js",
     "prepublish": "npm run lint && npm test && npm run build"
   },
   "homepage": "http://www.svgs.us",
