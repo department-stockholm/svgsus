@@ -25,4 +25,3 @@ test('oval-sketch-export optimized', t => {
     .then(svg => optimizeSvg(svg))
     .then(actual => t.is(expected, actual))
 })
-

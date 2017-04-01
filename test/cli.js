@@ -1,7 +1,7 @@
 import test from 'ava'
 import execa from 'execa'
-import {resolve} from 'path'
-import {readFileSync, unlinkSync} from 'fs'
+import { resolve } from 'path'
+import { readFileSync, unlinkSync } from 'fs'
 import svgsus from '..'
 
 test('bin/svgsus', t => run(t).catch(io => t.regex(io.stdout, /Usage: /)))
