@@ -42,7 +42,7 @@
     "onecolor": "3.0.4",
     "pdfjs-dist": "1.5.500",
     "svg-path-parser": "1.0.1",
-    "svgo": "0.7.1",
+    "svgo": "^0.7.2",
     "xml2js": "0.4.17"
   }
 }
