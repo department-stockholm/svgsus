@@ -37,7 +37,7 @@
     "cssparser": "0.2.2",
     "docopt": "0.6.2",
     "onecolor": "3.0.4",
-    "pdfjs-dist": "1.5.500",
+    "pdfjs-dist": "1.7.401",
     "svg-path-parser": "1.0.1",
     "svgo": "^0.7.2",
     "xml2js": "0.4.17"
