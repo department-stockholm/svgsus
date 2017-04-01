@@ -58,7 +58,7 @@ Object.keys(svgsus).forEach(format => {
   }
 })
 
-function run(t) {
+function run (t) {
   const args = t.title.split(' ')
   const cmd = resolve(__dirname, '..', args.shift())
   const opts = {}
@@ -72,7 +72,7 @@ function run(t) {
   return execa(cmd, args, opts)
 }
 
-function cleanup() {
+function cleanup () {
   const paths = [].slice.call(arguments).map(path => resolve(__dirname, '..', path))
   return () => new Promise(resolve => {
     paths.forEach(path => unlinkSync(path))
