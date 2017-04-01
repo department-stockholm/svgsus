@@ -1,6 +1,6 @@
 {
   "name": "svgsus",
-  "version": "0.23.0",
+  "version": "0.23.1",
   "description": "Organize, clean and transform your SVGs",
   "main": "index.js",
   "bin": {
