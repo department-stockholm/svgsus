@@ -23,4 +23,5 @@ test('oval-sketch-export optimized', t => {
   const expected = readFileSync(resolve(__dirname, '../fixtures', 'oval-sketch-export-optimized.svg'), 'utf8')
   return pdfToSvg(original)
     .then(svg => optimizeSvg(svg))
+    .then(actual => t.is(expected, actual))
 })
