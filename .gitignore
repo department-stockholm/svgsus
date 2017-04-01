@@ -30,4 +30,5 @@ node_modules
 
 .DS_Store
 
-browser.js
+svgsus.min.js
+svgsus.min.js.map
