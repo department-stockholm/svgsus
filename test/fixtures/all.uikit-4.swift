@@ -3,7 +3,7 @@ var logoOriginalSvg: CAShapeLayer = {
     ({
         let layer1 = CAShapeLayer()
         layer1.fillColor = UIColor(red: 0, green: 0, blue:0, alpha: 1).CGColor
-        layer1.strokeColor = UIColor(red: 0, green: 0, blue:0, alpha: 1).CGColor
+        layer1.strokeColor = UIColor(red: 0, green: 0, blue:0, alpha: 0).CGColor
         layer1.lineWidth = 0
         layer1.fillRule = kCAFillRuleEvenOdd
         rootLayer.addSublayer(layer1)
@@ -18,7 +18,7 @@ var logoOriginalSvg: CAShapeLayer = {
     ({
         let layer1 = CAShapeLayer()
         layer1.fillColor = UIColor(red: 1, green: 1, blue:1, alpha: 1).CGColor
-        layer1.strokeColor = UIColor(red: 0, green: 0, blue:0, alpha: 1).CGColor
+        layer1.strokeColor = UIColor(red: 0, green: 0, blue:0, alpha: 0).CGColor
         layer1.lineWidth = 0
         layer1.fillRule = kCAFillRuleEvenOdd
         rootLayer.addSublayer(layer1)
@@ -56,7 +56,7 @@ var logoOriginalSvg: CAShapeLayer = {
     ({
         let layer1 = CAShapeLayer()
         layer1.fillColor = UIColor(red: 1, green: 1, blue:1, alpha: 1).CGColor
-        layer1.strokeColor = UIColor(red: 0, green: 0, blue:0, alpha: 1).CGColor
+        layer1.strokeColor = UIColor(red: 0, green: 0, blue:0, alpha: 0).CGColor
         layer1.lineWidth = 0
         layer1.fillRule = kCAFillRuleEvenOdd
         rootLayer.addSublayer(layer1)
@@ -96,7 +96,7 @@ var coinOriginalSvg: CAShapeLayer = {
     ({
         let layer1 = CAShapeLayer()
         layer1.fillColor = UIColor(red: 0, green: 0, blue:0, alpha: 1).CGColor
-        layer1.strokeColor = UIColor(red: 0, green: 0, blue:0, alpha: 1).CGColor
+        layer1.strokeColor = UIColor(red: 0, green: 0, blue:0, alpha: 0).CGColor
         layer1.lineWidth = 0
         layer1.fillRule = kCAFillRuleEvenOdd
         rootLayer.addSublayer(layer1)
