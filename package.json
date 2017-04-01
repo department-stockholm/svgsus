@@ -8,10 +8,10 @@
   },
   "unpkg": "browser.js",
   "scripts": {
-    "test": "ava",
+    "test": "standard && ava",
     "lint": "standard",
     "build": "browserify index.js -o browser.js",
-    "prepublish": "npm run lint && npm test && npm run build"
+    "prepublish": "npm test && npm run build"
   },
   "homepage": "http://www.svgs.us",
   "repository": "department-stockholm/svgsus",
